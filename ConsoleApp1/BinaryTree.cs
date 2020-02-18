@@ -53,14 +53,14 @@ namespace ConsoleApp1
 
         public void Delete(int wtd)
         {
-            _delete(Root, wtd);
+            Delete(Root, wtd);
         }
 
-        private TreeNode _delete(TreeNode node, int wtd)
+        private TreeNode Delete(TreeNode node, int wtd)
         {
             if (node == null) return node;
-            if (wtd < node.Contents) node.LeftNode = _delete(node.LeftNode, wtd);
-            else if (wtd > node.Contents) node.RightNode = _delete(node.RightNode, wtd);
+            if (wtd < node.Contents) node.LeftNode = Delete(node.LeftNode, wtd);
+            else if (wtd > node.Contents) node.RightNode = Delete(node.RightNode, wtd);
             else
             {
                 if (node.LeftNode == null) return node.RightNode;
@@ -72,35 +72,35 @@ namespace ConsoleApp1
                     node.RightNode = node.RightNode.LeftNode;
                 }
                 node.Contents = tempmin;
-                node.RightNode = _delete(node.RightNode, node.Contents);
+                node.RightNode = Delete(node.RightNode, node.Contents);
             }
             return node;
         }
         
         public TreeNode Search(int wtf)
         {
-            return _search(Root, wtf);
+            return Search(Root, wtf);
         }
 
-        private TreeNode _search(TreeNode node, int wtf)
+        private TreeNode Search(TreeNode node, int wtf)
         {
             if (node == null || wtf == node.Contents) return node;
-            if (wtf < node.Contents) return _search(node.LeftNode, wtf);
-            return _search(node.RightNode, wtf);
+            if (wtf < node.Contents) return Search(node.LeftNode, wtf);
+            return Search(node.RightNode, wtf);
         }
         
         public void Print()
         {
-            _print(Root);
+            Print(Root);
         }
         
-        private void _print(TreeNode node)
+        private void Print(TreeNode node)
         {
             if (node != null)
             {
-                _print(node.LeftNode);
+                Print(node.LeftNode);
                 Console.WriteLine(node.Contents);
-                _print(node.RightNode);
+                Print(node.RightNode);
             }
         }
     }
